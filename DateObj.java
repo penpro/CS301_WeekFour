@@ -1,40 +1,89 @@
 import java.util.Objects;
+import java.time.*;
+// constructor DONE
 
+// compare dates
+
+// day of the week
+
+// override .toString DONE
 public final class DateObj {
 
-    public DateObj(int inputYear, int inputMonth, int inputDay){
-        final int Day = inputDay;
-        final int Month = inputMonth;
-        final int Year = inputYear;
+    private final int Day;
+    private final int Month;
+    private final int Year;
+    private final String DayOfTheWeekName;
+    private final int DayOfTheWeekNumber;
+    private String note;
+    private final String[] DaysOfTheWeekNames = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+    public DateObj(int inputYear, int inputMonth, int inputDay, int dayOfTheWeekNumber){
+        // maybe do some error handling
+        this.Day = inputDay;
+        this.Month = inputMonth;
+        this.Year = inputYear;
+        this.DayOfTheWeekNumber = CalculateDayOfTheWeek();
+        this.DayOfTheWeekName = (DayOfTheWeekName(this.DayOfTheWeekNumber));
+
     }
 
-    public int GetDay(DateObj inputDate){
-
+    private String DayOfTheWeekName(int DoW){
+        return DaysOfTheWeekNames[DoW];
     }
 
-    // constructor
+    public String GetDayOfTheWeekName(){
+        return this.DayOfTheWeekName;
+    }
 
-    // compare dates
+    public int GetDayOfTheWeekNumber(){
+        return this.DayOfTheWeekNumber;
+    }
 
-    // day of the week
+    public int CalculateDayOfTheWeek(){
+        // my birthday is march 19th 1982 and it was a friday
+        // January first 1500 was a Monday
+        int DayNumber = 0;
 
-    // override .toString
+
+
+        return DayNumber;
+    }
+
+    public String GetNote(){
+        return this.note;
+    }
+
+    public void SetNote(String input){
+        this.note = input;
+    }
+
+    public int GetDay(){
+        return this.Day;
+    }
+
+    public int GetMonth(){
+        return this.Month;
+    }
+
+    public int GetYear(){
+        return this.Year;
+    }
+
+
 
     public static void main(String[] args) {
 
     }
 
     @Override
-    public String toString(DateObj inputDate){
-        StringBuilder output = new StringBuilder();
+    public String toString(){
 
-        output.append(this.GetYear);
-        output.append('.');
-        output.append(this.GetMonth);
-        output.append('.');
-        output.append(this.GetDay);
-
-        return output.toString();
+        return (String.valueOf(
+                this.Year +
+                '.' +
+                this.Month +
+                '.' +
+                this.Day));
     }
 
 
