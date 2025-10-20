@@ -3,10 +3,10 @@ import java.util.Random;
 
 public class SodaMachine {
 
-    private ArrayList<String> machineContents = new ArrayList<>();
+    private final ArrayList<String> machineContents = new ArrayList<>();
     private float cashInMachine;
-    private ArrayList<Integer> inventory = new ArrayList<>();
-    private ArrayList<Double> prices = new ArrayList<>();
+    private final ArrayList<Integer> inventory = new ArrayList<>();
+    private final ArrayList<Double> prices = new ArrayList<>();
     private float coinsPending;
 
     public SodaMachine(){
