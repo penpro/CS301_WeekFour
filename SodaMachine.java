@@ -55,7 +55,7 @@ public class SodaMachine {
             coinsPending -= GetSelectionPrice(selection);
             inventory.set(selection, (available-1) );
             cashInMachine += GetSelectionPrice(selection);
-            System.out.println("The machine whirs to life lamely and just when you think it ate your money you here a can drop into the shoot.");
+            System.out.println("The machine whirs to life lamely and just when you think it ate your money you hear a can drop into the shoot.");
         }
         else if (available < 1) {
             System.out.println("The machine whirs to life lamely and just when you think it ate your money you see the \"Please Make Another Selection\" text scrawl across the display.");
