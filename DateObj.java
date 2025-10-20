@@ -1,3 +1,4 @@
+import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 import java.time.*;
 // constructor DONE
@@ -15,9 +16,22 @@ public final class DateObj {
     private final String DayOfTheWeekName;
     private final int DayOfTheWeekNumber;
     private String note;
-    private final String[] DaysOfTheWeekNames = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+    private static final String[] DaysOfTheWeekNames = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
 
-    public DateObj(int inputYear, int inputMonth, int inputDay, int dayOfTheWeekNumber){
+
+
+    // you can pass in a LocalDate type to create this DateObject
+    public DateObj(LocalDate date){
+        this(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
+    }
+
+    // if there's no arguments it assumes you're asking for today
+    public DateObj(){
+        this(LocalDate.now());
+    }
+
+    // 3 constructor argument
+    public DateObj(int inputYear, int inputMonth, int inputDay){
         // maybe do some error handling
         this.Day = inputDay;
         this.Month = inputMonth;
@@ -41,11 +55,10 @@ public final class DateObj {
 
     public int CalculateDayOfTheWeek(){
         // my birthday is march 19th 1982 and it was a friday
-        // January first 1500 was a Monday
+        // January first 1500 was a Monday, so December 31st 1499 was a sunday which is index 0
         int DayNumber = 0;
-
-
-
+        long days = ChronoUnit.DAYS.between(LocalDate.of(1499, 12, 31),LocalDate.of(this.Year, this.Month, this.Day));
+        DayNumber = (int) (days % 7);
         return DayNumber;
     }
 
@@ -69,8 +82,6 @@ public final class DateObj {
         return this.Year;
     }
 
-
-
     public static void main(String[] args) {
 
     }
@@ -78,13 +89,10 @@ public final class DateObj {
     @Override
     public String toString(){
 
-        return (String.valueOf(
-                this.Year +
-                '.' +
-                this.Month +
-                '.' +
-                this.Day));
+        return String.format("%04d.%02d.%02d", this.Year, this.Month, this.Day);
     }
+
+
 
 
 }
