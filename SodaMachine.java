@@ -12,9 +12,9 @@ public class SodaMachine {
     public SodaMachine(){
         this.cashInMachine = 0.0f;
         this.coinsPending = 0.0f;
-        this.machineContents.addFirst("Dr. Pepper");
-        this.inventory.addFirst(10);
-        this.prices.addFirst(0.75);
+        this.machineContents.add("Dr. Pepper");
+        this.inventory.add(10);
+        this.prices.add(0.75);
     }
 
     public void insertCoin(String coinName){
@@ -95,7 +95,42 @@ public class SodaMachine {
         this.inventory.set(selection, qty);
     }
 
+    public static void main(String[] args) {
+        // Create a machine
+        SodaMachine machine = new SodaMachine();
 
+        System.out.println("=== Initial inventory ===");
+        machine.checkInventory();
+        machine.checkCashInMachine();
+        System.out.println();
+
+        // Insert some coins and buy one soda
+        System.out.println("=== Insert coins and buy Dr. Pepper ===");
+        machine.insertCoin("quarter");
+        machine.insertCoin("quarter");
+        machine.insertCoin("quarter");  // total should be 0.75
+        machine.BuySoda(0);             // selection index 0
+
+        System.out.println();
+        System.out.println("=== Inventory and cash after purchase ===");
+        machine.checkInventory();
+        machine.checkCashInMachine();
+        System.out.println();
+
+        // Try to buy with not enough money
+        System.out.println("=== Try to buy with insufficient funds ===");
+        machine.insertCoin("dime");
+        machine.BuySoda(0);  // should complain and refund coinsPending
+        System.out.println();
+
+        // Empty out inventory and try to buy again
+        System.out.println("=== Set inventory to 0 and try to buy ===");
+        machine.setInventory(0, 0);
+        machine.insertCoin("quarter");
+        machine.insertCoin("quarter");
+        machine.insertCoin("quarter");
+        machine.BuySoda(0);  // should print the out-of-stock message
+    }
 
 
 
