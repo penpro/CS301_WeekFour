@@ -62,23 +62,23 @@ public final class DateObj {
         return DayNumber;
     }
 
-    public String GetNote(){
+    public String getNote(){
         return this.note;
     }
 
-    public void SetNote(String input){
+    public void setNote(String input){
         this.note = input;
     }
 
-    public int GetDay(){
+    public int getDay(){
         return this.Day;
     }
 
-    public int GetMonth(){
+    public int getMonth(){
         return this.Month;
     }
 
-    public int GetYear(){
+    public int getYear(){
         return this.Year;
     }
 
@@ -90,6 +90,13 @@ public final class DateObj {
     public String toString(){
 
         return String.format("%04d.%02d.%02d", this.Year, this.Month, this.Day);
+    }
+
+    public int daysBetween(DateObj other) {
+        LocalDate d1 = LocalDate.of(Year, Month, Day);
+        LocalDate d2 = LocalDate.of(other.Year, other.Month, other.Day);
+        long days = ChronoUnit.DAYS.between(d1, d2);
+        return (int) days;
     }
 
 

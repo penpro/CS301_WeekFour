@@ -23,7 +23,7 @@ public class Rot13 {
 
         //PrintUnicodeLibrary();
 
-        System.out.println(Rot13BuilderLetterStrict(ToEncrypt));
+        System.out.println(rot13(ToEncrypt));
 
     }
 
@@ -64,6 +64,23 @@ public class Rot13 {
 
         return StringInProgress.toString();
     }
+    private static String rot13(String s) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
 
+            if (c >= 'a' && c <= 'z') {
+                c = (char) ('a' + (c - 'a' + 13) % 26);
+            } else if (c >= 'A' && c <= 'Z') {
+                c = (char) ('A' + (c - 'A' + 13) % 26);
+            }
+
+            sb.append(c);
+        }
+        return sb.toString();
+    }
 }
+
+
+
 
